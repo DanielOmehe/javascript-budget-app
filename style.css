@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  :root {
+    --primary: #2b4bfe;
+    --transparent: transparent;
+    --white: #ffffff;
+    --black: #000000;
+    --grey: #ededed;
+  }
+  
+  #budget-wrapper {
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .budget-container {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .budget-btns {
+    width: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  button {
+    width: 45%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .expense {
+    background: var(--transparent);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+  }
+  
+  .add-budget {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1;
+  }
+  
+  .add-budget-form {
+    width: 400px;
+    height: 100%;
+    padding: 20px;
+    background: var(--white);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+  }
+  
+  add-budget-form h1 {
+    font-size: 20px;
+  }
+  
+  .close {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 300px;
+  }
+  
+  .add-budget.open {
+    display: block;
+    background: linear-gradient(rgba(0, 0, 0, 0.795), rgba(0, 0, 0, 0.79));
+  }
+  
+  .add-budget-form.open {
+    transition: all 0.3s linear;
+    left: 0;
+  }
+  
+  .line {
+    width: 100%;
+    height: 5px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .line:nth-child(1) {
+    transform: rotate(45deg);
+  }
+  
+  .line:nth-child(2) {
+    transform: translateY(-20px) rotate(-45deg);
+  }
+  
+  input,
+  select {
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--black);
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+  }
+  
+  .inputs {
+    margin-top: 50px;
+  }
+  
+  .add-budget-btn {
+    margin-top: 10px;
+    background: var(--primary);
+    color: var(--white);
+  }
+  
+  .budget-input {
+    margin-top: 30px;
+  }
+  
+  .budgets {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: repeat(4, 200px);
+  }
+  
+  .budget {
+    width: 100%;
+    background: var(--transparent);
+    border: 2px solid var(--grey);
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .budget-title {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .budget h1 {
+    font-size: 20px;
+  }
+  
+  .progress {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: var(--grey);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .progress::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    z-index: 0;
+  }
+  
+  .budget-account {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .budget-account table {
+    width: 100%;
+  }
+  
+  .budget-account table tr {
+    border: 2px solid red;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.85);
+  }
+  
