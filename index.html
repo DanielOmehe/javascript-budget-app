@@ -14,8 +14,10 @@
     <div id="budget-wrapper">
         <div class="budget-container">
             <h1 class="budget-heading">Budgets</h1>
-            <button class="add-budget">Add Budget</button>
-            <button class="add-expense">Add expense</button>
+            <div class="button-wrapper">
+                <button class="add-budget">Add Budget</button>
+                <button class="add-expense">Add expense</button>
+            </div>
         </div>
         <div class="add-budget-backdrop"></div>
         <form class="add-budget-form">
@@ -43,57 +45,65 @@
             <div class="budget entertainment-budget">
                 <div class="budget-title">
                     <h1>Entertainment</h1>
-                    <div>
-                        <p class="amount"></p>
-                        <span>
-                            <p class="max"></p>
-                        </span>
+                    <div class="budget-ratio">
+                        <p class="amount"></p>/
+                        <p class="max"></p>
                     </div>
                 </div>
                 <div class="progress-wrapper">
                     <div class="progress"></div>
+                </div>
+                <div class="buttons">
+                    <button class="expense">Add expense</button>
+                    <button class="view-expense">view expense</button>
                 </div>
             </div>
             <div class="budget entertainment-budget">
                 <div class="budget-title">
                     <h1>Feeding</h1>
-                    <div>
-                        <p class="amount"></p>
-                        <span>
-                            <p class="max"></p>
-                        </span>
+                    <div class="budget-ratio">
+                        <p class="amount"></p>/
+                        <p class="max"></p>
                     </div>
                 </div>
                 <div class="progress-wrapper">
                     <div class="progress"></div>
+                </div>
+                <div class="buttons">
+                    <button class="expense">Add expense</button>
+                    <button class="view-expense">view expense</button>
                 </div>
             </div>
             <div class="budget entertainment-budget">
                 <div class="budget-title">
                     <h1>Internet</h1>
-                    <div>
-                        <p class="amount"></p>
-                        <span>
-                            <p class="max"></p>
-                        </span>
+                    <div class="budget-ratio">
+                        <p class="amount"></p>/
+                        <p class="max"></p>
                     </div>
                 </div>
                 <div class="progress-wrapper">
                     <div class="progress"></div>
+                </div>
+                <div class="buttons">
+                    <button class="expense">Add expense</button>
+                    <button class="view-expense">view expense</button>
                 </div>
             </div>
             <div class="budget entertainment-budget">
                 <div class="budget-title">
                     <h1>Miscellaneous</h1>
-                    <div>
-                        <p class="amount"></p>
-                        <span>
-                            <p class="max"></p>
-                        </span>
+                    <div class="budget-ratio">
+                        <p class="amount"></p>/
+                        <p class="max"></p>
                     </div>
                 </div>
                 <div class="progress-wrapper">
                     <div class="progress"></div>
+                </div>
+                <div class="buttons">
+                    <button class="expense">Add expense</button>
+                    <button class="view-expense">view expense</button>
                 </div>
             </div>
         </div>
@@ -106,46 +116,8 @@
                 <th>Description</th>
                 <th>Amount</th>
             </tr>
-            <tr class="table-row">
-                <td>S/N</td>
-                <td>Name</td>
-                <td>Description</td>
-                <td>Amount</td>
-                <td><button class="button">
-                        <i class='fa-solid fa-pen'></i>
-                    </button></td>
-                <td><button class="button">
-                        <i class='fa-solid fa-trash'></i>
-                    </button></td>
-            </tr>
-            <tr class="table-row">
-                <td>S/N</td>
-                <td>Name</td>
-                <td>Description</td>
-                <td>Amount</td>
-                <td><button class="button">
-                        <i class='fa-solid fa-pen'></i>
-                    </button></td>
-                <td><button class="button">
-                        <i class='fa-solid fa-trash'></i>
-                    </button></td>
-            </tr>
-            <tr class="table-row">
-                <td>S/N</td>
-                <td>Name</td>
-                <td>Description</td>
-                <td>Amount</td>
-                <td><button class="button">
-                        <i class='fa-solid fa-pen'></i>
-                    </button></td>
-                <td><button class="button">
-                        <i class='fa-solid fa-trash'></i>
-                    </button></td>
-            </tr>
         </table>
-
     </div>
     <script src="main.js"></script>
 </body>
-
 </html>

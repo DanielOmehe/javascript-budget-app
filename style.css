@@ -14,7 +14,10 @@
     --grey: #ededed;
     --danger: #fe1257;
     --warning: #f0f87d;
+    --outline-danger-light: #eca1b8;
     --outline: 2px solid #2b4bfe;
+    --blur: #ababab;
+    --outline-warning: 2px solid #f0f87d;
   }
   
   #budget-wrapper {
@@ -162,11 +165,11 @@
   
   .budgets {
     width: 100%;
-    padding: 10px;
+    margin: 0 auto;
+    padding: 5px;
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: repeat(4, 200px);
+    grid-template-columns: repeat(auto-fill, minmax(350px, 550px));
   }
   
   .budget {
@@ -181,6 +184,46 @@
   .budget-title {
     width: 100%;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .amount{ 
+    margin-right: .2rem;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 0 10px;
+  }
+
+  .expense{
+    background: var(--transparent);
+    color: var(--primary);
+    border: var(--outline);
+  }
+
+  .view-expense{
+    border: 2px solid var(--outline-danger-light);
+    background: var(--transparent);
+    color: var(--danger);
+  }
+
+  .max{ 
+    margin-left: .4rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blur);
+  }
+
+  .budget-ratio{
+    display: flex;
+    align-items: center;
+    width: 180px;
   }
   
   .budget h1 {
