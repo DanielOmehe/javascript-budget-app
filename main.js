@@ -7,6 +7,7 @@ budgetAmount = document.querySelector(".expenses-amount"),
 totalBudget = document.querySelector('.total-budget'),
 addBudgetForm = document.querySelector(".add-budget-form"),
 chooseCategory = document.querySelector("#choose-category"),
+expensesTable = document.querySelector('.budget-account-table'),
 amount = document.querySelectorAll('.amount');
 
 console.log(chooseCategory.value);
@@ -70,5 +71,5 @@ addBudgetForm.addEventListener("submit", (e) => {
 });
 
 function createNewExpense(expense, category){
-    
+  
 }
