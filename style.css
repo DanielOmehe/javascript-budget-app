@@ -12,6 +12,9 @@
     --white: #ffffff;
     --black: #000000;
     --grey: #ededed;
+    --danger: #fe1257;
+    --warning: #f0f87d;
+    --outline: 2px solid #2b4bfe;
   }
   
   #budget-wrapper {
@@ -36,7 +39,7 @@
   }
   
   button {
-    width: 45%;
+    width: 150px;
     height: 40px;
     border: none;
     outline: none;
@@ -44,6 +47,18 @@
     font-size: 12px;
     padding: 5px;
     border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .add-budget{
+    background-color: var(--primary);
+    color: var(--white);
+  }
+
+  .add-expense{
+    color: var(--primary);
+    background: var(--transparent);
+    border: var(--outline);
   }
   
   .expense {
@@ -52,9 +67,9 @@
     color: var(--primary);
   }
   
-  .add-budget {
+  .add-budget-backdrop {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -65,13 +80,23 @@
   .add-budget-form {
     width: 400px;
     height: 100%;
-    padding: 20px;
+    padding: 40px 20px;
     background: var(--white);
     position: absolute;
     top: 0;
     left: -100%;
     transition: all 0.5s ease-in-out;
     z-index: 2;
+  }
+
+  .add-budget-backdrop.open {
+    display: block;
+    background: linear-gradient(rgba(0, 0, 0, 0.795), rgba(0, 0, 0, 0.79));
+  }
+  
+  .add-budget-form.open {
+    transition: all 0.3s linear;
+    left: 0;
   }
   
   add-budget-form h1 {
@@ -82,23 +107,13 @@
     width: 40px;
     height: 40px;
     position: absolute;
-    top: 20px;
-    left: 300px;
-  }
-  
-  .add-budget.open {
-    display: block;
-    background: linear-gradient(rgba(0, 0, 0, 0.795), rgba(0, 0, 0, 0.79));
-  }
-  
-  .add-budget-form.open {
-    transition: all 0.3s linear;
-    left: 0;
+    top: 50px;
+    left: 340px;
   }
   
   .line {
     width: 100%;
-    height: 5px;
+    height: 3px;
     margin: 15px 0;
     border-radius: 5px;
     background: var(--black);
@@ -112,7 +127,7 @@
   }
   
   .line:nth-child(2) {
-    transform: translateY(-20px) rotate(-45deg);
+    transform: translateY(-18px) rotate(-45deg);
   }
   
   input,
@@ -128,8 +143,7 @@
   }
   
   input:focus {
-    border: 2px solid var(--primary);
-    border-radius: 10px;
+    border-bottom: 2px solid var(--primary);
   }
   
   .inputs {
@@ -173,7 +187,7 @@
     font-size: 20px;
   }
   
-  .progress {
+  .progress-wrapper {
     width: 100%;
     height: 20px;
     border-radius: 10px;
@@ -183,14 +197,13 @@
     overflow: hidden;
   }
   
-  .progress::before {
-    content: "";
+  .progress {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background: red;
+    background: var(--warning);
     z-index: 0;
   }
   
@@ -205,8 +218,17 @@
     width: 100%;
   }
   
-  .budget-account table tr {
-    border: 2px solid red;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.85);
+  .button{
+    width: 40px;
+    height: 40px;
+    background: var(--transparent);
   }
-  
+
+  .table-row{
+    width: 100%;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 1fr 40px 40px;
+    grid-template-rows: 50px;
+    place-items: center;
+  }

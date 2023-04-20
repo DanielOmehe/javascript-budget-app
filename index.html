@@ -1,141 +1,151 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>JavaScript Budget App</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>JavaScript Budget App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-  <div id="budget-wrapper">
-    <div class="budget-container">
-      <h1 class="budget-heading">Budgets</h1>
-      <button class="expense">Add expense</button>
+    <div id="budget-wrapper">
+        <div class="budget-container">
+            <h1 class="budget-heading">Budgets</h1>
+            <button class="add-budget">Add Budget</button>
+            <button class="add-expense">Add expense</button>
+        </div>
+        <div class="add-budget-backdrop"></div>
+        <form class="add-budget-form">
+            <h1>Add Budget</h1>
+            <div class="close">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="budget-input">
+                <input class="expenses-name" type="text" placeholder="expense" />
+                <input class="expenses-description" type="text" placeholder="description" />
+                <input class="expenses-amount" type="number" placeholder="amount" />
+                <input class="total-budget" type="number" placeholder="total budget" />
+                <select name="expense-category" id="choose-category">
+                    <option selected value="entertainment">Entertainment</option>
+                    <option value="food">Food</option>
+                    <option value="internet">Internet</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+            <button class="add-budget-btn" type="submit">Add budget</button>
+        </form>
+
+        <div class="budgets">
+            <div class="budget entertainment-budget">
+                <div class="budget-title">
+                    <h1>Entertainment</h1>
+                    <div>
+                        <p class="amount"></p>
+                        <span>
+                            <p class="max"></p>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress-wrapper">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="budget entertainment-budget">
+                <div class="budget-title">
+                    <h1>Feeding</h1>
+                    <div>
+                        <p class="amount"></p>
+                        <span>
+                            <p class="max"></p>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress-wrapper">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="budget entertainment-budget">
+                <div class="budget-title">
+                    <h1>Internet</h1>
+                    <div>
+                        <p class="amount"></p>
+                        <span>
+                            <p class="max"></p>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress-wrapper">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="budget entertainment-budget">
+                <div class="budget-title">
+                    <h1>Miscellaneous</h1>
+                    <div>
+                        <p class="amount"></p>
+                        <span>
+                            <p class="max"></p>
+                        </span>
+                    </div>
+                </div>
+                <div class="progress-wrapper">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="add-budget">
-      <form class="add-budget-form">
-        <h1>Add Budget</h1>
-        <div class="close">
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-        <div class="budget-input">
-          <input class="name" type="text" placeholder="budget" />
-          <input class="description" type="text" placeholder="description" />
-          <input class="amount" type="number" placeholder="amount" />
-          <select name="expense-category" id="choose-category">
-            <option selected value="entertainment">Entertainment</option>
-            <option value="food">Food</option>
-            <option value="internet">Internet</option>
-            <option value="miscellaneous">Miscellaneous</option>
-          </select>
-        </div>
-        <button class="add-budget-btn" type="submit">Add budget</button>
-      </form>
+    <div class='budget-account'>
+        <table class="budget-account-table">
+            <tr class='table-row'>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+            <tr class="table-row">
+                <td>S/N</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Amount</td>
+                <td><button class="button">
+                        <i class='fa-solid fa-pen'></i>
+                    </button></td>
+                <td><button class="button">
+                        <i class='fa-solid fa-trash'></i>
+                    </button></td>
+            </tr>
+            <tr class="table-row">
+                <td>S/N</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Amount</td>
+                <td><button class="button">
+                        <i class='fa-solid fa-pen'></i>
+                    </button></td>
+                <td><button class="button">
+                        <i class='fa-solid fa-trash'></i>
+                    </button></td>
+            </tr>
+            <tr class="table-row">
+                <td>S/N</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Amount</td>
+                <td><button class="button">
+                        <i class='fa-solid fa-pen'></i>
+                    </button></td>
+                <td><button class="button">
+                        <i class='fa-solid fa-trash'></i>
+                    </button></td>
+            </tr>
+        </table>
+
     </div>
-    <div class="budgets">
-      <div class="budget entertainment-budget">
-        <div class="budget-title">
-          <h1>Entertainment</h1>
-          <div>
-            <p class="amount"></p>
-            <span>
-              <p class="max"></p>
-            </span>
-          </div>
-        </div>
-        <div class="progress">
-
-        </div>
-      </div>
-      <div class="budget entertainment-budget">
-        <div class="budget-title">
-          <h1>Feeding</h1>
-          <div>
-            <p class="amount"></p>
-            <span>
-              <p class="max"></p>
-            </span>
-          </div>
-        </div>
-        <div class="progress">
-
-        </div>
-      </div>
-      <div class="budget entertainment-budget">
-        <div class="budget-title">
-          <h1>Transportation</h1>
-          <div>
-            <p class="amount"></p>
-            <span>
-              <p class="max"></p>
-            </span>
-          </div>
-        </div>
-        <div class="progress">
-
-        </div>
-      </div>
-      <div class="budget entertainment-budget">
-        <div class="budget-title">
-          <h1>Miscellaneous</h1>
-          <div>
-            <p class="amount"></p>
-            <span>
-              <p class="max"></p>
-            </span>
-          </div>
-        </div>
-        <div class="progress"></div>
-      </div>
-    </div>
-  </div>
-  <div class='budget-account'>
-    <table>
-      <tr>
-        <td>S/N</td>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Amount</td>
-        <td><button>
-            <i class='fa-solid fa-pen'></i>
-          </button></td>
-        <td><button>
-            <i class='fa-solid fa-trash'></i>
-          </button></td>
-      </tr>
-      <tr>
-        <td>S/N</td>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Amount</td>
-        <td><button></button></td>
-        <td><button></button></td>
-      </tr>
-      <tr>
-        <td>S/N</td>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Amount</td>
-        <td><button></button></td>
-        <td><button></button></td>
-      </tr>
-      <tr>
-        <td>S/N</td>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Amount</td>
-        <td><button></button></td>
-        <td><button></button></td>
-      </tr>
-    </table>
-
-  </div>
-  <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
