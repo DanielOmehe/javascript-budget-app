@@ -7,7 +7,7 @@
 
     <title>JavaScript Budget App</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
 </head>
 
 <body>
@@ -19,10 +19,17 @@
                 <button class="add-expense">Add expense</button>
             </div>
         </div>
+        <div class='add-new-budget'>
+            <div class='add'>
+                <div class="plus"></div>
+                <div class="plus"></div>
+            </div>
+            <h1>No Budget Added</h1>
+        </div>
         <div class="add-budget-backdrop"></div>
-        <form class="add-budget-form">
+        <form class="add-expense-form">
             <h1>Add Budget</h1>
-            <div class="close">
+            <div class="close-expense-form">
                 <div class="line"></div>
                 <div class="line"></div>
             </div>
@@ -30,7 +37,24 @@
                 <input class="expenses-name" type="text" placeholder="expense" />
                 <input class="expenses-description" type="text" placeholder="description" />
                 <input class="expenses-amount" type="number" placeholder="amount" />
-                <input class="total-budget" type="number" placeholder="total budget" />
+                <select name="expense-category" id="choose-category">
+                    <option selected value="entertainment">Entertainment</option>
+                    <option value="food">Food</option>
+                    <option value="internet">Internet</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+            <button class="add-expense-btn" type="submit">Add budget</button>
+        </form>
+        <form class="add-budget-form">
+            <h1>Add Budget</h1>
+            <div class="close-budget-form">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="budget-input">
+                <input class="budget-name" type="text" placeholder="expense" />
+                <input class="expenses-amount" type="number" placeholder="total budget" />
                 <select name="expense-category" id="choose-category">
                     <option selected value="entertainment">Entertainment</option>
                     <option value="food">Food</option>
@@ -42,7 +66,7 @@
         </form>
 
         <div class="budgets">
-            <div class="budget entertainment-budget">
+            <!-- <div class="budget entertainment-budget">
                 <div class="budget-title">
                     <h1>Entertainment</h1>
                     <div class="budget-ratio">
@@ -105,7 +129,7 @@
                     <button class="expense">Add expense</button>
                     <button class="view-expense">view expense</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class='budget-account'>
@@ -120,7 +144,11 @@
                 <th class="table-heading"></th>
             </tr>
         </table>
+        <div class="add-new-expense"><h1>No expenses added yet</h1></div>
+
+        <button class="toggle-theme"><i class="fa-solid fa-moon"></i></button>
     </div>
+    <script src="js/all.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

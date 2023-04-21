@@ -16,6 +16,10 @@
     --warning: #f0f87d;
     --outline-danger-light: #eca1b8;
     --outline: 2px solid #2b4bfe;
+    --outline-primary-light: 2px solid #8491df;
+    --outline-dark: 2px solid #23242c;
+    --outline-light: 2px solid #ffffff;
+    --outline-grey: 2px solid #efefef;
     --blur: #ababab;
     --outline-warning: 2px solid #f0f87d;
   }
@@ -81,10 +85,22 @@
     z-index: 1;
   }
   
-  .add-budget-form {
-    width: 400px;
+  .add-expense-form {
+    width: 600px;
     height: 100%;
-    padding: 40px 20px;
+    padding: 40px;
+    background: var(--white);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+  }
+
+  .add-budget-form {
+    width: 600px;
+    height: 100%;
+    padding: 40px;
     background: var(--white);
     position: absolute;
     top: 0;
@@ -98,16 +114,32 @@
     background: linear-gradient(rgba(0, 0, 0, 0.795), rgba(0, 0, 0, 0.79));
   }
   
+  .add-expense-form.open {
+    transition: all 0.3s linear;
+    left: 0;
+  }
+
   .add-budget-form.open {
     transition: all 0.3s linear;
     left: 0;
   }
   
+  add-expense-form h1 {
+    font-size: 20px;
+  }
+
   add-budget-form h1 {
     font-size: 20px;
   }
   
-  .close {
+  .close-budget-form {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50px;
+    left: 340px;
+  }
+  .close-expense-form {
     width: 40px;
     height: 40px;
     position: absolute;
@@ -159,15 +191,27 @@
     background: var(--primary);
     color: var(--white);
   }
+
+  .add-expense-btn {
+    margin-top: 10px;
+    background: var(--primary);
+    color: var(--white);
+  }
   
   .budget-input {
     margin-top: 30px;
   }
   
   .budgets {
+    display: none;
+  }
+
+  .budgets.new-budget{
+    display: grid;
+    gap: 10px;
     width: 100%;
     margin: 0 auto;
-    padding: 5px;
+    padding: 20px;
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -233,6 +277,62 @@
   .budget h1 {
     font-size: 20px;
   }
+
+  .add-new-budget{
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    padding: 40px 80px;
+  }
+
+  .add-new-expense{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey);
+  }
+
+  .add-new-budget:hover{
+    border: 2px dashed var(--outline-danger-light);
+  }
+
+  .add-new-budget h1{
+    color: var(--grey);
+  }
+
+  .add{ 
+    width: 300px;
+    height: 300px;
+    padding: 40px;
+    background: var(--transparent);
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 50%;
+    border: var(--outline-grey);
+  }
+
+  .plus{
+    width: 100%;
+    height: 10px;
+    background: var(--grey);
+    margin: 0;
+  }
+
+  .plus:nth-child(1){
+    transform: translate(0px, 20px) rotate(90deg);
+  }
+
+  .plus:nth-child(2){
+    transform: translate(0px, -20px);
+  }
   
   .progress-wrapper {
     width: 100%;
@@ -257,11 +357,10 @@
   .budget-account {
     width: 100%;
     height: auto;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 0 80px;
   }
   
-  .budget-account table {
+  .budget-account-table {
     width: 100%;
   }
   
@@ -275,9 +374,21 @@
     width: 100%;
     border-bottom: 2px solid rgba(0, 0, 0, 0.25);
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 1fr 1fr 40px 40px;
-    grid-template-rows: 50px;
+    grid-template-columns: 40px 1fr 1fr 1fr 1fr 40px 40px;
+    grid-template-rows: 60px;
     place-items: center;
+  }
+
+  .toggle-theme{
+    position: fixed;
+    top: 90%;
+    left: 95%;
+    width: 50px;
+    height: 50px;
+    background: var(--transparent);
+    border: var(--outline-primary-light);
+    border-radius: 50%;
+    z-index: 2;
   }
 
   @media only screen and (max-width: 400px){
@@ -305,6 +416,10 @@
       padding: 0;
     }
 
+    .add-expense-form{
+      width: 320px;
+    }
+
     .add-budget-form{
       width: 320px;
     }
@@ -326,11 +441,18 @@
       width: 100px;
     }
 
+    .add-expense-form h1{
+      font-size: 25px;
+    }
     .add-budget-form h1{
       font-size: 25px;
     }
 
-    .close{
+    .close-expense-form{
+      top: 45px;
+      left: 250px;
+    }
+    .close-budget-form{
       top: 45px;
       left: 250px;
     }
@@ -372,5 +494,15 @@
 
     .table-cols{
       font-size: 8.5px;
+    }
+
+    .add-new-budget{
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-theme{
+      top: 90%;
+      left: 83%;
     }
   }

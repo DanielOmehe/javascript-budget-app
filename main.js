@@ -1,18 +1,46 @@
 const addExpenseBtn = document.querySelector(".add-expense"),
   addBudgetBtn = document.querySelector(".add-budget"),
-  closeBtn = document.querySelector(".close"),
+  closeExpenseForm = document.querySelector(".close-expense-form"),
+  closeBudgetForm = document.querySelector(".close-expense-form"),
   budgetName = document.querySelector(".expenses-name"),
   budgetDescription = document.querySelector(".expenses-description"),
   budgetAmount = document.querySelector(".expenses-amount"),
   totalBudget = document.querySelector(".total-budget"),
+  addExpenseForm = document.querySelector(".add-expense-form"),
   addBudgetForm = document.querySelector(".add-budget-form"),
   chooseCategory = document.querySelector("#choose-category"),
   expensesTable = document.querySelector(".budget-account-table"),
   amount = document.querySelectorAll(".amount"),
+  toggleTheme = document.querySelector('.toggle-theme'),
   maxBudgetAmount = document.querySelectorAll(".max");
 
-let expenses = [],
-  max = 0;
+let expenses = [];
+let toggle = false;
+
+toggleTheme.addEventListener('click', ()=>{
+  if(toggle){
+    toggleTheme.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+    document.body.style.backgroundColor = '#000000';
+    document.body.style.color = '#fff';
+    toggleTheme.style.color = '#fff';
+    document.querySelector('.add').style.border = 'var(--outline-light)'
+    document.querySelectorAll('.plus').forEach(node => {
+      node.style.backgroundColor = 'var(--white)'
+    })
+    toggle = false;
+  }else{
+    toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i>`
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.color = '#000';
+    toggleTheme.style.color = '#000';
+    document.querySelector('.add').style.border = 'var(--outline-grey)';
+    document.querySelectorAll('.plus').forEach((node) => {
+      console.log(node);
+      node.style.backgroundColor = 'var(--grey)'
+    })
+    toggle = true;
+  }
+})
 
 window.addEventListener("load", () => {
   amount.forEach((amount) => {
@@ -24,12 +52,24 @@ window.addEventListener("load", () => {
 });
 const string = "abcdefghijklmnopqrstuvqxyz1234567890";
 
+// function set
+
 addExpenseBtn.addEventListener("click", () => {
+  document.querySelector(".add-budget-backdrop").classList.add("open");
+  addExpenseForm.classList.add("open");
+});
+
+addBudgetBtn.addEventListener("click", () => {
   document.querySelector(".add-budget-backdrop").classList.add("open");
   addBudgetForm.classList.add("open");
 });
 
-closeBtn.addEventListener("click", () => {
+closeExpenseForm.addEventListener("click", () => {
+  document.querySelector(".add-budget-backdrop").classList.remove("open");
+  addExpenseForm.classList.remove("open");
+});
+
+closeBudgetForm.addEventListener("click", () => {
   document.querySelector(".add-budget-backdrop").classList.remove("open");
   addBudgetForm.classList.remove("open");
 });
@@ -37,6 +77,7 @@ closeBtn.addEventListener("click", () => {
 document.querySelector(".add-budget-backdrop").addEventListener("click", () => {
   document.querySelector(".add-budget-backdrop").classList.remove("open");
   addBudgetForm.classList.remove("open");
+  addExpenseForm.classList.remove('open');
 });
 
 const generateID = (string) => {
@@ -65,8 +106,7 @@ addBudgetForm.addEventListener("submit", (e) => {
   const name = budgetName.value,
     description = budgetDescription.value,
     amount = budgetAmount.value,
-    category = chooseCategory.value,
-    max = totalBudget.value;
+    category = chooseCategory.value;
 
   if (name === "" || description === "" || amount === "") {
     alert("please fill in all fields");
@@ -75,11 +115,10 @@ addBudgetForm.addEventListener("submit", (e) => {
     createNewExpense(
       {
         id: generateID(string),
-        name: name,
+        name,
         description,
         amount: generateCurrency(amount),
         category,
-        totalBudget: generateCurrency(max),
       },
       category
     );
@@ -114,4 +153,3 @@ function createNewExpense(expense, category) {
 </tr>`;
   });
 };
-
