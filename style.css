@@ -22,7 +22,8 @@
   
   #budget-wrapper {
     width: 100%;
-    min-height: 100vh;
+    height: auto;
+    padding: 2.5rem 5rem;
   }
   
   .budget-container {
@@ -35,7 +36,7 @@
   }
   
   .budget-btns {
-    width: 210px;
+    width: 310px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -169,7 +170,8 @@
     padding: 5px;
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 550px));
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 250px);
   }
   
   .budget {
@@ -197,8 +199,10 @@
 
   .buttons{
     display: flex;
+    align-items: baseline;
     justify-content: flex-end;
     gap: 0 10px;
+    margin-top: 5.3rem;
   }
 
   .expense{
@@ -271,7 +275,102 @@
     width: 100%;
     border-bottom: 2px solid rgba(0, 0, 0, 0.25);
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 1fr 40px 40px;
+    grid-template-columns: 50px 1fr 1fr 1fr 1fr 40px 40px;
     grid-template-rows: 50px;
     place-items: center;
+  }
+
+  @media only screen and (max-width: 400px){
+    #budget-wrapper{
+      width: 100%;
+      padding: 7px; 
+    }
+
+    .budget-container{
+      width: 100%;
+    }
+
+    .budget-container h1{
+      justify-content: space-between;
+      font-size: 25px;
+    }
+
+    .budget-btns{
+      width: 210px;
+    }
+
+    button{
+      width: 100px;
+      height: 30px;
+      padding: 0;
+    }
+
+    .add-budget-form{
+      width: 320px;
+    }
+
+    .budget-title h1{
+      font-size: 17px;
+      margin-right: 2.4em;
+    }
+
+    .amount{
+      font-size: 14px;
+    }
+
+    .max{
+      font-size: 12px;
+    }
+
+    .budget-ratio{
+      width: 100px;
+    }
+
+    .add-budget-form h1{
+      font-size: 25px;
+    }
+
+    .close{
+      top: 45px;
+      left: 250px;
+    }
+
+    .budgets{
+      grid-template-columns: 1fr;
+    }
+
+    .budget{
+      padding: 20px 10px;
+    }
+
+    .budget-account{
+      width: 100%;
+      padding: 10px;
+    }
+
+    .add-budget-backdrop {
+      width: 100vw;
+      transition: all .2s linear;
+    }
+
+    .table-row{
+      width: 100%;
+      gap: 2px;
+      padding: 2px;
+      grid-template-columns: 15px 50px 75px 55px 60px 30px 30px;
+      grid-template-rows: 30px;
+    }
+
+    .budget-account-table{
+      width: 100%;
+    }
+
+    .table-heading{
+      font-size: 10px;
+      margin: 0;
+    }
+
+    .table-cols{
+      font-size: 8.5px;
+    }
   }

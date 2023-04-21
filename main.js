@@ -48,10 +48,11 @@ const generateID = (string) => {
   return idString;
 };
 
+
 const generateCurrency = (amount) => {
   const currentcyFormat = new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: "ngn",
+    currency: "eur"
   });
 
   const currency = currentcyFormat.format(amount);
@@ -95,21 +96,22 @@ function createNewExpense(expense, category) {
   expenses.map((expense, index) => {
     expensesTable.innerHTML += `
       <tr class="table-row" id='${expense.id}'>
-        <td>${index + 1}</td>
-        <td>${expense.name}</td>
-        <td>${expense.description}</td>
-        <td>${expense.amount}</td>
-        <td>${expense.category}</td>
-        <td>
+        <td class='table-cols'>${index + 1}</td>
+        <td class='table-cols'>${expense.name}</td>
+        <td class='table-cols'>${expense.description}</td>
+        <td class='table-cols'>${expense.amount}</td>
+        <td class='table-cols'>${expense.category}</td>
+        <td class='table-cols'>
           <button class="button">
             <i class='fa-solid fa-pen'></i>
           </button>
         </td>
-        <td>
+        <td class='table-cols'>
           <button class="button">
             <i class='fa-solid fa-trash'></i>
           </button>
         </td>
 </tr>`;
   });
-}
+};
+
