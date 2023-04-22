@@ -27,6 +27,11 @@ toggleTheme.addEventListener('click', ()=>{
     document.querySelectorAll('.plus').forEach(node => {
       node.style.backgroundColor = 'var(--white)'
     })
+    addExpenseBtn.style.border = 'var(--outline-light)';
+    addBudgetBtn.style.backgroundColor = 'var(--white)';
+    addExpenseBtn.style.color = 'var(--white)';
+    addBudgetBtn.style.color = 'var(--black)';
+    document.querySelector('.add-new-budget').classList.add('white')
     toggle = false;
   }else{
     toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i>`
@@ -38,6 +43,8 @@ toggleTheme.addEventListener('click', ()=>{
       console.log(node);
       node.style.backgroundColor = 'var(--grey)'
     })
+    addExpenseBtn.style.border = 'var(--outline)';
+    addExpenseBtn.style.color = 'var(--primary)';
     toggle = true;
   }
 })
@@ -52,27 +59,23 @@ window.addEventListener("load", () => {
 });
 const string = "abcdefghijklmnopqrstuvqxyz1234567890";
 
-// function set
-
-addExpenseBtn.addEventListener("click", () => {
+function openDrawer(node){
   document.querySelector(".add-budget-backdrop").classList.add("open");
-  addExpenseForm.classList.add("open");
-});
+  node.classList.add('open');
+}
 
-addBudgetBtn.addEventListener("click", () => {
-  document.querySelector(".add-budget-backdrop").classList.add("open");
-  addBudgetForm.classList.add("open");
-});
-
-closeExpenseForm.addEventListener("click", () => {
+function closeDrawer(element){
   document.querySelector(".add-budget-backdrop").classList.remove("open");
-  addExpenseForm.classList.remove("open");
-});
+  element.classList.remove('open');
+}
 
-closeBudgetForm.addEventListener("click", () => {
-  document.querySelector(".add-budget-backdrop").classList.remove("open");
-  addBudgetForm.classList.remove("open");
-});
+addExpenseBtn.addEventListener("click", () => openDrawer(addExpenseForm));
+
+addBudgetBtn.addEventListener("click", () => openDrawer(addBudgetForm));
+
+closeExpenseForm.addEventListener("click", () => closeDrawer(addExpenseForm));
+
+closeBudgetForm.addEventListener("click", () => closeDrawer(addBudgetForm));
 
 document.querySelector(".add-budget-backdrop").addEventListener("click", () => {
   document.querySelector(".add-budget-backdrop").classList.remove("open");
@@ -100,7 +103,7 @@ const generateCurrency = (amount) => {
   return currency;
 };
 
-addBudgetForm.addEventListener("submit", (e) => {
+addExpenseForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const name = budgetName.value,
@@ -127,11 +130,11 @@ addBudgetForm.addEventListener("submit", (e) => {
   budgetName.value = "";
   budgetDescription.value = "";
   budgetAmount.value = "";
-  totalBudget.value = "";
 });
 
 function createNewExpense(expense, category) {
   expenses.push(expense);
+  document.querySelector('.add-new-expense').style.display = 'none';
   expenses.map((expense, index) => {
     expensesTable.innerHTML += `
       <tr class="table-row" id='${expense.id}'>
@@ -141,15 +144,18 @@ function createNewExpense(expense, category) {
         <td class='table-cols'>${expense.amount}</td>
         <td class='table-cols'>${expense.category}</td>
         <td class='table-cols'>
-          <button class="button">
+          <button class="button edit">
             <i class='fa-solid fa-pen'></i>
           </button>
         </td>
         <td class='table-cols'>
-          <button class="button">
+          <button class="button delete">
             <i class='fa-solid fa-trash'></i>
           </button>
         </td>
 </tr>`;
   });
 };
+
+const editBtns = document.querySelectorAll('.edit');
+console.log(editBtns);

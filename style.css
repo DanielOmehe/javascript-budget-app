@@ -14,12 +14,15 @@
     --grey: #ededed;
     --danger: #fe1257;
     --warning: #f0f87d;
-    --outline-danger-light: #eca1b8;
+    --outline-danger-light: 2px solid #eca1b8;
+    --outline-danger-light-dashed: 2px dashed #eca1b8;
     --outline: 2px solid #2b4bfe;
     --outline-primary-light: 2px solid #8491df;
     --outline-dark: 2px solid #23242c;
     --outline-light: 2px solid #ffffff;
+    --outline-light-dashed: 2px dashed #ffffff;
     --outline-grey: 2px solid #efefef;
+    --outline-grey-dashed: 2px solid #efefef;
     --blur: #ababab;
     --outline-warning: 2px solid #f0f87d;
   }
@@ -137,14 +140,14 @@
     height: 40px;
     position: absolute;
     top: 50px;
-    left: 340px;
+    left: 540px;
   }
   .close-expense-form {
     width: 40px;
     height: 40px;
     position: absolute;
     top: 50px;
-    left: 340px;
+    left: 540px;
   }
   
   .line {
@@ -297,7 +300,10 @@
   }
 
   .add-new-budget:hover{
-    border: 2px dashed var(--outline-danger-light);
+    border: var(--outline-danger-light-dashed);
+  }
+  .add-new-budget:hover.white{
+    border: var(--outline-light-dashed);
   }
 
   .add-new-budget h1{
