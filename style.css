@@ -205,22 +205,6 @@
     margin-top: 30px;
   }
   
-  .budgets {
-    display: none;
-  }
-
-  .budgets.new-budget{
-    display: grid;
-    gap: 10px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 250px);
-  }
-  
   .budget {
     width: 100%;
     background: var(--transparent);
@@ -259,7 +243,7 @@
   }
 
   .view-expense{
-    border: 2px solid var(--outline-danger-light);
+    border: var(--outline-danger-light);
     background: var(--transparent);
     color: var(--danger);
   }
@@ -288,6 +272,8 @@
     display: grid;
     place-items: center;
     padding: 40px 80px;
+    position: relative;
+    z-index: 1;
   }
 
   .add-new-expense{
@@ -304,6 +290,22 @@
   }
   .add-new-budget:hover.white{
     border: var(--outline-light-dashed);
+  }
+
+  .budgets{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 250px);
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    top: 50%;
+    z-index: 0;
+    border: 3px solid magenta;
+  }
+
+  .add-new-budget.hide{
+    display: none;
   }
 
   .add-new-budget h1{
@@ -360,13 +362,13 @@
     z-index: 0;
   }
   
-  .budget-account {
+  .expense-account {
     width: 100%;
     height: auto;
     padding: 0 80px;
   }
   
-  .budget-account-table {
+  .expense-account-table {
     width: 100%;
   }
   

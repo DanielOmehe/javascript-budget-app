@@ -1,53 +1,60 @@
 const addExpenseBtn = document.querySelector(".add-expense"),
   addBudgetBtn = document.querySelector(".add-budget"),
   closeExpenseForm = document.querySelector(".close-expense-form"),
-  closeBudgetForm = document.querySelector(".close-expense-form"),
-  budgetName = document.querySelector(".expenses-name"),
-  budgetDescription = document.querySelector(".expenses-description"),
-  budgetAmount = document.querySelector(".expenses-amount"),
+  closeBudgetForm = document.querySelector(".close-budget-form"),
+  expenseName = document.querySelector(".expenses-name"),
+  expenseDescription = document.querySelector(".expenses-description"),
+  expenseAmount = document.querySelector(".expenses-amount"),
+  budgetName = document.querySelector(".budget-name"),
+  budgetAmount = document.querySelector(".budget-amount"),
+  chooseBudgetCategory = document.querySelector("#choose-budget-category"),
   totalBudget = document.querySelector(".total-budget"),
   addExpenseForm = document.querySelector(".add-expense-form"),
   addBudgetForm = document.querySelector(".add-budget-form"),
-  chooseCategory = document.querySelector("#choose-category"),
+  chooseExpenseCategory = document.querySelector("#choose-category"),
   expensesTable = document.querySelector(".budget-account-table"),
   amount = document.querySelectorAll(".amount"),
-  toggleTheme = document.querySelector('.toggle-theme'),
+  toggleTheme = document.querySelector(".toggle-theme"),
+  allBudgets = document.querySelector('.budgets'),
   maxBudgetAmount = document.querySelectorAll(".max");
 
-let expenses = [];
+let expenses = [],
+  budgets = [];
 let toggle = false;
 
-toggleTheme.addEventListener('click', ()=>{
-  if(toggle){
+toggleTheme.addEventListener("click", () => {
+  if (toggle) {
     toggleTheme.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-    document.body.style.backgroundColor = '#000000';
-    document.body.style.color = '#fff';
-    toggleTheme.style.color = '#fff';
-    document.querySelector('.add').style.border = 'var(--outline-light)'
-    document.querySelectorAll('.plus').forEach(node => {
-      node.style.backgroundColor = 'var(--white)'
-    })
-    addExpenseBtn.style.border = 'var(--outline-light)';
-    addBudgetBtn.style.backgroundColor = 'var(--white)';
-    addExpenseBtn.style.color = 'var(--white)';
-    addBudgetBtn.style.color = 'var(--black)';
-    document.querySelector('.add-new-budget').classList.add('white')
+    document.body.style.backgroundColor = "#000000";
+    document.body.style.color = "#fff";
+    toggleTheme.style.color = "#fff";
+    document.querySelector(".add").style.border = "var(--outline-light)";
+    document.querySelectorAll(".plus").forEach((node) => {
+      node.style.backgroundColor = "var(--white)";
+    });
+    addExpenseBtn.style.border = "var(--outline-light)";
+    addBudgetBtn.style.backgroundColor = "var(--white)";
+    addExpenseBtn.style.color = "var(--white)";
+    addBudgetBtn.style.color = "var(--black)";
+    document.querySelector(".add-new-budget").classList.add("white");
     toggle = false;
-  }else{
-    toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i>`
-    document.body.style.backgroundColor = '#ffffff';
-    document.body.style.color = '#000';
-    toggleTheme.style.color = '#000';
-    document.querySelector('.add').style.border = 'var(--outline-grey)';
-    document.querySelectorAll('.plus').forEach((node) => {
+  } else {
+    toggleTheme.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.color = "#000";
+    toggleTheme.style.color = "#000";
+    document.querySelector(".add").style.border = "var(--outline-grey)";
+    document.querySelectorAll(".plus").forEach((node) => {
       console.log(node);
-      node.style.backgroundColor = 'var(--grey)'
-    })
-    addExpenseBtn.style.border = 'var(--outline)';
-    addExpenseBtn.style.color = 'var(--primary)';
+      node.style.backgroundColor = "var(--grey)";
+    });
+    addBudgetBtn.style.backgroundColor = "var(--primary)";
+    addBudgetBtn.style.color = "var(--white)";
+    addExpenseBtn.style.border = "var(--outline)";
+    addExpenseBtn.style.color = "var(--primary)";
     toggle = true;
   }
-})
+});
 
 window.addEventListener("load", () => {
   amount.forEach((amount) => {
@@ -59,14 +66,14 @@ window.addEventListener("load", () => {
 });
 const string = "abcdefghijklmnopqrstuvqxyz1234567890";
 
-function openDrawer(node){
+function openDrawer(node) {
   document.querySelector(".add-budget-backdrop").classList.add("open");
-  node.classList.add('open');
+  node.classList.add("open");
 }
 
-function closeDrawer(element){
+function closeDrawer(element) {
   document.querySelector(".add-budget-backdrop").classList.remove("open");
-  element.classList.remove('open');
+  element.classList.remove("open");
 }
 
 addExpenseBtn.addEventListener("click", () => openDrawer(addExpenseForm));
@@ -80,7 +87,7 @@ closeBudgetForm.addEventListener("click", () => closeDrawer(addBudgetForm));
 document.querySelector(".add-budget-backdrop").addEventListener("click", () => {
   document.querySelector(".add-budget-backdrop").classList.remove("open");
   addBudgetForm.classList.remove("open");
-  addExpenseForm.classList.remove('open');
+  addExpenseForm.classList.remove("open");
 });
 
 const generateID = (string) => {
@@ -92,11 +99,10 @@ const generateID = (string) => {
   return idString;
 };
 
-
 const generateCurrency = (amount) => {
   const currentcyFormat = new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: "eur"
+    currency: "eur",
   });
 
   const currency = currentcyFormat.format(amount);
@@ -105,36 +111,48 @@ const generateCurrency = (amount) => {
 
 addExpenseForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  const name = budgetName.value,
-    description = budgetDescription.value,
-    amount = budgetAmount.value,
-    category = chooseCategory.value;
-
-  if (name === "" || description === "" || amount === "") {
+  if (expenseName.value === "" || expenseDescription.value === "" || expenseAmount === "") {
     alert("please fill in all fields");
     e.stopPropagation();
   } else {
     createNewExpense(
       {
         id: generateID(string),
-        name,
-        description,
+        name: expenseName.value,
+        description: expenseDescription.value,
         amount: generateCurrency(amount),
-        category,
+        category: chooseExpenseCategory.value,
       },
-      category
+      chooseCategory.value
     );
   }
 
+  expenseName.value = "";
+  expenseDescription.value = "";
+  expenseAmount.value = "";
+});
+
+addBudgetForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (budgetName.value === "" || budgetAmount === "") {
+    alert("please fill in all fields");
+    e.stopPropagation();
+  } else {
+    document.querySelector('.add-new-budget').classList.add('hide')
+    createNewBudget({
+      id: generateID(string),
+      name: budgetName.value,
+      amount: generateCurrency(budgetAmount.value),
+    })
+  }
+
   budgetName.value = "";
-  budgetDescription.value = "";
   budgetAmount.value = "";
 });
 
 function createNewExpense(expense, category) {
   expenses.push(expense);
-  document.querySelector('.add-new-expense').style.display = 'none';
+  document.querySelector(".add-new-expense").style.display = "none";
   expenses.map((expense, index) => {
     expensesTable.innerHTML += `
       <tr class="table-row" id='${expense.id}'>
@@ -155,7 +173,32 @@ function createNewExpense(expense, category) {
         </td>
 </tr>`;
   });
-};
+}
 
-const editBtns = document.querySelectorAll('.edit');
+function createNewBudget(budget) {
+  budgets.push(budget);
+
+  budgets.map((budget)=>{
+    allBudgets.innerHTML += `
+    <div class="budget" id=${budget.id}>
+      <div class="budget-title">
+        <h1>${budget.name}</h1>
+        <div class="budget-ratio">
+            <p class="amount">${generateCurrency(0)}</p>/
+            <p class="max">${budget.amount}</p>
+        </div>
+      </div>
+      <div class="progress-wrapper">
+        <div class="progress"></div>
+      </div>
+      <div class="buttons">
+        <button class="expense">Add expense</button>
+        <button class="view-expense">view expense</button>
+      </div>
+    </div>
+    `
+  })
+}
+
+const editBtns = document.querySelectorAll(".edit");
 console.log(editBtns);

@@ -28,7 +28,7 @@
         </div>
         <div class="add-budget-backdrop"></div>
         <form class="add-expense-form">
-            <h1>Add Budget</h1>
+            <h1>Add Expenses</h1>
             <div class="close-expense-form">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -38,13 +38,15 @@
                 <input class="expenses-description" type="text" placeholder="description" />
                 <input class="expenses-amount" type="number" placeholder="amount" />
                 <select name="expense-category" id="choose-category">
-                    <option selected value="entertainment">Entertainment</option>
+                    <option selected disabled>choose category</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="education">Education</option>
                     <option value="food">Food</option>
                     <option value="internet">Internet</option>
                     <option value="miscellaneous">Miscellaneous</option>
                 </select>
             </div>
-            <button class="add-expense-btn" type="submit">Add budget</button>
+            <button class="add-expense-btn" type="submit">Add Expenses</button>
         </form>
         <form class="add-budget-form">
             <h1>Add Budget</h1>
@@ -53,87 +55,15 @@
                 <div class="line"></div>
             </div>
             <div class="budget-input">
-                <input class="budget-name" type="text" placeholder="expense" />
-                <input class="expenses-amount" type="number" placeholder="total budget" />
-                <select name="expense-category" id="choose-category">
-                    <option selected value="entertainment">Entertainment</option>
-                    <option value="food">Food</option>
-                    <option value="internet">Internet</option>
-                    <option value="miscellaneous">Miscellaneous</option>
-                </select>
+                <input class="budget-name" type="text" placeholder="Budget" />
+                <input class="budget-amount" type="number" placeholder="total budget" />
             </div>
             <button class="add-budget-btn" type="submit">Add budget</button>
         </form>
-
-        <div class="budgets">
-            <!-- <div class="budget entertainment-budget">
-                <div class="budget-title">
-                    <h1>Entertainment</h1>
-                    <div class="budget-ratio">
-                        <p class="amount"></p>/
-                        <p class="max"></p>
-                    </div>
-                </div>
-                <div class="progress-wrapper">
-                    <div class="progress"></div>
-                </div>
-                <div class="buttons">
-                    <button class="expense">Add expense</button>
-                    <button class="view-expense">view expense</button>
-                </div>
-            </div>
-            <div class="budget entertainment-budget">
-                <div class="budget-title">
-                    <h1>Feeding</h1>
-                    <div class="budget-ratio">
-                        <p class="amount"></p>/
-                        <p class="max"></p>
-                    </div>
-                </div>
-                <div class="progress-wrapper">
-                    <div class="progress"></div>
-                </div>
-                <div class="buttons">
-                    <button class="expense">Add expense</button>
-                    <button class="view-expense">view expense</button>
-                </div>
-            </div>
-            <div class="budget entertainment-budget">
-                <div class="budget-title">
-                    <h1>Internet</h1>
-                    <div class="budget-ratio">
-                        <p class="amount"></p>/
-                        <p class="max"></p>
-                    </div>
-                </div>
-                <div class="progress-wrapper">
-                    <div class="progress"></div>
-                </div>
-                <div class="buttons">
-                    <button class="expense">Add expense</button>
-                    <button class="view-expense">view expense</button>
-                </div>
-            </div>
-            <div class="budget entertainment-budget">
-                <div class="budget-title">
-                    <h1>Miscellaneous</h1>
-                    <div class="budget-ratio">
-                        <p class="amount"></p>/
-                        <p class="max"></p>
-                    </div>
-                </div>
-                <div class="progress-wrapper">
-                    <div class="progress"></div>
-                </div>
-                <div class="buttons">
-                    <button class="expense">Add expense</button>
-                    <button class="view-expense">view expense</button>
-                </div>
-            </div> -->
-        </div>
+        <div class="budgets"></div>
     </div>
-    <div class='budget-account'>
-        <table class="budget-account-table">
+    <div class='expense-account'>
+        <table class="expense-account-table">
             <tr class='table-row'>
                 <th class="table-heading">S/N</th>
                 <th class="table-heading">Name</th>
