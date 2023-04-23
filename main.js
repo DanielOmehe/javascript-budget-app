@@ -99,7 +99,7 @@ const generateID = (string) => {
   return idString;
 };
 
-const generateCurrency = (amount) => {
+const generateCurrency = (amount = 0) => {
   const currentcyFormat = new Intl.NumberFormat(undefined, {
     style: "currency",
     currency: "eur",
@@ -176,28 +176,41 @@ function createNewExpense(expense, category) {
 }
 
 function createNewBudget(budget) {
-  budgets.push(budget);
+  const newBudget = document.createElement('div'),
+  budgetTitle = document.createElement('div'),
+  budgetHeading = document.createElement('h1'),
+  budgetRatio = document.createElement('div'),
+  budgetExpenseRatio = document.createElement('p'),
+  budgetAmount = document.createElement('p'),
+  line = document.createElement('p'),
+  progressContainer = document.createElement('div'),
+  progress = document.createElement('div'),
+  deleteBudget = document.createElement('button');
+  deleteBudget.innerText = 'delete budget';
 
-  budgets.map((budget)=>{
-    allBudgets.innerHTML += `
-    <div class="budget" id=${budget.id}>
-      <div class="budget-title">
-        <h1>${budget.name}</h1>
-        <div class="budget-ratio">
-            <p class="amount">${generateCurrency(0)}</p>/
-            <p class="max">${budget.amount}</p>
-        </div>
-      </div>
-      <div class="progress-wrapper">
-        <div class="progress"></div>
-      </div>
-      <div class="buttons">
-        <button class="expense">Add expense</button>
-        <button class="view-expense">view expense</button>
-      </div>
-    </div>
-    `
-  })
+  deleteBudget.classList.add('delete-budget')
+  newBudget.classList.add('budget');
+  budgetTitle.classList.add('budget-title');
+  budgetRatio.classList.add('budget-ratio');
+  budgetExpenseRatio.classList.add('amount')
+  progressContainer.classList.add('progress-wrapper');
+  progress.classList.add('progress');
+  progress.style.width = '50%';
+  budgetAmount.classList.add('max')
+  budgetHeading.innerText = budget.name
+  budgetAmount.innerText = budget.amount;
+  line.innerText = '/'
+  budgetExpenseRatio.innerText = generateCurrency();
+  progressContainer.appendChild(progress)
+  budgetRatio.appendChild(budgetExpenseRatio);
+  budgetRatio.appendChild(line);
+  budgetRatio.appendChild(budgetAmount);
+  budgetTitle.appendChild(budgetHeading);
+  budgetTitle.appendChild(budgetRatio)
+  newBudget.appendChild(budgetTitle);
+  newBudget.appendChild(progressContainer);
+  newBudget.appendChild(deleteBudget);
+  allBudgets.appendChild(newBudget)
 }
 
 const editBtns = document.querySelectorAll(".edit");

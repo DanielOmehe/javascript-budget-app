@@ -207,11 +207,13 @@
   
   .budget {
     width: 100%;
+    height: 250px;
     background: var(--transparent);
     border: 2px solid var(--grey);
     outline: none;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
+    position: relative;
   }
   
   .budget-title {
@@ -236,16 +238,13 @@
     margin-top: 5.3rem;
   }
 
-  .expense{
-    background: var(--transparent);
-    color: var(--primary);
-    border: var(--outline);
-  }
-
-  .view-expense{
-    border: var(--outline-danger-light);
+  .delete-budget{
     background: var(--transparent);
     color: var(--danger);
+    border: var(--outline-danger-light);
+    position: absolute;
+    top: 180px;
+    left: 530px;
   }
 
   .max{ 
@@ -258,7 +257,7 @@
   .budget-ratio{
     display: flex;
     align-items: center;
-    width: 180px;
+    width: 120px;
   }
   
   .budget h1 {
@@ -295,13 +294,12 @@
   .budgets{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 250px);
+    /* grid-template-rows: repeat(2, 250px); */
     gap: 20px;
     width: 100%;
     position: relative;
     top: 50%;
     z-index: 0;
-    border: 3px solid magenta;
   }
 
   .add-new-budget.hide{
