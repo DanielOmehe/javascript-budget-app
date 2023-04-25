@@ -15,12 +15,14 @@ const addExpenseBtn = document.querySelector(".add-expense"),
   expensesTable = document.querySelector(".budget-account-table"),
   amount = document.querySelectorAll(".amount"),
   toggleTheme = document.querySelector(".toggle-theme"),
-  allBudgets = document.querySelector('.budgets'),
+  allBudgets = document.querySelector(".budgets"),
   maxBudgetAmount = document.querySelectorAll(".max");
 
 let expenses = [],
   budgets = [];
 let toggle = false;
+
+let budget = JSON.parse(localStorage.getItem("budget"));
 
 toggleTheme.addEventListener("click", () => {
   if (toggle) {
@@ -54,15 +56,6 @@ toggleTheme.addEventListener("click", () => {
     addExpenseBtn.style.color = "var(--primary)";
     toggle = true;
   }
-});
-
-window.addEventListener("load", () => {
-  amount.forEach((amount) => {
-    amount.innerHTML = generateCurrency(0);
-  });
-  maxBudgetAmount.forEach((amount) => {
-    amount.innerHTML = generateCurrency(0);
-  });
 });
 const string = "abcdefghijklmnopqrstuvqxyz1234567890";
 
@@ -111,7 +104,11 @@ const generateCurrency = (amount = 0) => {
 
 addExpenseForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (expenseName.value === "" || expenseDescription.value === "" || expenseAmount === "") {
+  if (
+    expenseName.value === "" ||
+    expenseDescription.value === "" ||
+    expenseAmount === ""
+  ) {
     alert("please fill in all fields");
     e.stopPropagation();
   } else {
@@ -138,14 +135,18 @@ addBudgetForm.addEventListener("submit", (e) => {
     alert("please fill in all fields");
     e.stopPropagation();
   } else {
-    document.querySelector('.add-new-budget').classList.add('hide')
+    document.querySelector(".add-new-budget").classList.add("hide");
     createNewBudget({
       id: generateID(string),
       name: budgetName.value,
       amount: generateCurrency(budgetAmount.value),
-    })
+    });
+    addNewBudget({
+      id: generateID(string),
+      name: budgetName.value,
+      amount: generateCurrency(budgetAmount.value),
+    });
   }
-
   budgetName.value = "";
   budgetAmount.value = "";
 });
@@ -175,43 +176,55 @@ function createNewExpense(expense, category) {
   });
 }
 
-function createNewBudget(budget) {
-  const newBudget = document.createElement('div'),
-  budgetTitle = document.createElement('div'),
-  budgetHeading = document.createElement('h1'),
-  budgetRatio = document.createElement('div'),
-  budgetExpenseRatio = document.createElement('p'),
-  budgetAmount = document.createElement('p'),
-  line = document.createElement('p'),
-  progressContainer = document.createElement('div'),
-  progress = document.createElement('div'),
-  deleteBudget = document.createElement('button');
-  deleteBudget.innerText = 'delete budget';
+function createNewBudget() {
+  let budget = JSON.parse(localStorage.getItem("budget"));
+  const newBudget = document.createElement("div"),
+    budgetTitle = document.createElement("div"),
+    budgetHeading = document.createElement("h1"),
+    budgetRatio = document.createElement("div"),
+    budgetExpenseRatio = document.createElement("p"),
+    budgetAmount = document.createElement("p"),
+    line = document.createElement("p"),
+    progressContainer = document.createElement("div"),
+    progress = document.createElement("div"),
+    deleteBudget = document.createElement("button");
+  deleteBudget.innerText = "delete budget";
 
-  deleteBudget.classList.add('delete-budget')
-  newBudget.classList.add('budget');
-  budgetTitle.classList.add('budget-title');
-  budgetRatio.classList.add('budget-ratio');
-  budgetExpenseRatio.classList.add('amount')
-  progressContainer.classList.add('progress-wrapper');
-  progress.classList.add('progress');
-  progress.style.width = '50%';
-  budgetAmount.classList.add('max')
-  budgetHeading.innerText = budget.name
+  deleteBudget.classList.add("delete-budget");
+  newBudget.classList.add("budget");
+  budgetTitle.classList.add("budget-title");
+  budgetRatio.classList.add("budget-ratio");
+  budgetExpenseRatio.classList.add("amount");
+  progressContainer.classList.add("progress-wrapper");
+  progress.classList.add("progress");
+  progress.style.width = "50%";
+  budgetAmount.classList.add("max");
+  budgetHeading.innerText = budget.name;
   budgetAmount.innerText = budget.amount;
-  line.innerText = '/'
+  line.innerText = "/";
   budgetExpenseRatio.innerText = generateCurrency();
-  progressContainer.appendChild(progress)
+  progressContainer.appendChild(progress);
   budgetRatio.appendChild(budgetExpenseRatio);
   budgetRatio.appendChild(line);
   budgetRatio.appendChild(budgetAmount);
   budgetTitle.appendChild(budgetHeading);
-  budgetTitle.appendChild(budgetRatio)
+  budgetTitle.appendChild(budgetRatio);
   newBudget.appendChild(budgetTitle);
   newBudget.appendChild(progressContainer);
   newBudget.appendChild(deleteBudget);
-  allBudgets.appendChild(newBudget)
+  allBudgets.appendChild(newBudget);
+  allBudgets.removeChild(document.querySelector('.add-new-budget').innerHTML = null)
 }
 
-const editBtns = document.querySelectorAll(".edit");
-console.log(editBtns);
+function addNewBudget(budget){
+  localStorage.setItem("newBudget", JSON.stringify(budget));
+  let newBudget = localStorage.getItem("newBudget");
+  createNewBudget(newBudget);
+  newBudget = newBudget ? JSON.parse(newBudget) : null;
+}
+
+// let newBudget = localStorage.getItem("newBudget")
+// if(newBudget){
+//   JSON.parse(newBudget)
+//   createNewBudget(newBudget)
+// }
