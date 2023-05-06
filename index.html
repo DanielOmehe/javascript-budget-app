@@ -7,7 +7,6 @@
 
     <title>JavaScript Budget App</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
 </head>
 
 <body>
@@ -49,11 +48,11 @@
             </div>
             <div class="budget-input">
                 <input class="budget-name" type="text" placeholder="Budget" />
-                <input class="budget-amount" type="number" placeholder="total budget" />
+                <input class="budget-amount" type="number" placeholder="budget amount" />
             </div>
             <button class="add-budget-btn" type="submit">Add budget</button>
         </form>
-        <div class="budgets">
+        <div class="budget-wrapper">
             <div class='add-new-budget'>
                 <div class='add'>
                     <div class="plus"></div>
@@ -61,6 +60,7 @@
                 </div>
                 <h1>No Budget Added</h1>
             </div>
+            <div class="budgets"></div>
         </div>
     </div>
     <div class='expense-account'>

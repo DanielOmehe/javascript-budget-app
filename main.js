@@ -12,7 +12,7 @@ const addExpenseBtn = document.querySelector(".add-expense"),
   addExpenseForm = document.querySelector(".add-expense-form"),
   addBudgetForm = document.querySelector(".add-budget-form"),
   chooseExpenseCategory = document.querySelector("#choose-category"),
-  expensesTable = document.querySelector(".budget-account-table"),
+  expensesTable = document.querySelector(".expense-account-table"),
   amount = document.querySelectorAll(".amount"),
   toggleTheme = document.querySelector(".toggle-theme"),
   allBudgets = document.querySelector(".budgets"),
@@ -102,6 +102,10 @@ const generateCurrency = (amount = 0) => {
   return currency;
 };
 
+function getTotalExpenses(array){
+  return array.reduce((element, accumulator) => { return accumulator + element.amount}, 0)
+}
+
 addExpenseForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (
@@ -120,7 +124,7 @@ addExpenseForm.addEventListener("submit", (e) => {
         amount: generateCurrency(amount),
         category: chooseExpenseCategory.value,
       },
-      chooseCategory.value
+      chooseExpenseCategory.value
     );
   }
 
@@ -129,27 +133,13 @@ addExpenseForm.addEventListener("submit", (e) => {
   expenseAmount.value = "";
 });
 
-addBudgetForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (budgetName.value === "" || budgetAmount === "") {
-    alert("please fill in all fields");
-    e.stopPropagation();
-  } else {
-    document.querySelector(".add-new-budget").classList.add("hide");
-    createNewBudget({
-      id: generateID(string),
-      name: budgetName.value,
-      amount: generateCurrency(budgetAmount.value),
-    });
-    addNewBudget({
-      id: generateID(string),
-      name: budgetName.value,
-      amount: generateCurrency(budgetAmount.value),
-    });
-  }
-  budgetName.value = "";
-  budgetAmount.value = "";
-});
+function addNewExpense(expense){
+  let expenseList = JSON.parse(localStorage.getItem("expenses"));
+  if(expenseList === null) expenseList = [];
+  localStorage.setItem("expenses", JSON.stringify(expense));
+  expenseList.push(budget);
+  localStorage.setItem("expenses", JSON.stringify(expenseList));
+}
 
 function createNewExpense(expense, category) {
   expenses.push(expense);
@@ -174,10 +164,34 @@ function createNewExpense(expense, category) {
         </td>
 </tr>`;
   });
+
+  console.log(getTotalExpenses(expenses));
 }
 
-function createNewBudget() {
-  let budget = JSON.parse(localStorage.getItem("budget"));
+
+addBudgetForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (budgetName.value === "" || budgetAmount === "") {
+    alert("please fill in all fields");
+    e.preventDefault();
+  } else {
+    document.querySelector(".add-new-budget").classList.add("hide");
+    createNewBudget({
+      id: generateID(string),
+      name: budgetName.value,
+      amount: generateCurrency(budgetAmount.value),
+    });
+    addNewBudget({
+      id: generateID(string),
+      name: budgetName.value,
+      amount: generateCurrency(budgetAmount.value),
+    });
+    budgetName.value = null;
+    budgetAmount.value = null;
+  }
+});
+
+function createNewBudget(budget) {
   const newBudget = document.createElement("div"),
     budgetTitle = document.createElement("div"),
     budgetHeading = document.createElement("h1"),
@@ -202,6 +216,7 @@ function createNewBudget() {
   budgetHeading.innerText = budget.name;
   budgetAmount.innerText = budget.amount;
   line.innerText = "/";
+  budgetRatio.innerHTML = ge
   budgetExpenseRatio.innerText = generateCurrency();
   progressContainer.appendChild(progress);
   budgetRatio.appendChild(budgetExpenseRatio);
@@ -213,18 +228,22 @@ function createNewBudget() {
   newBudget.appendChild(progressContainer);
   newBudget.appendChild(deleteBudget);
   allBudgets.appendChild(newBudget);
-  allBudgets.removeChild(document.querySelector('.add-new-budget').innerHTML = null)
+  document.querySelector('.add-new-budget').style.display = 'none';
 }
 
 function addNewBudget(budget){
-  localStorage.setItem("newBudget", JSON.stringify(budget));
-  let newBudget = localStorage.getItem("newBudget");
-  createNewBudget(newBudget);
-  newBudget = newBudget ? JSON.parse(newBudget) : null;
+  let budgetList = JSON.parse(localStorage.getItem("budgets"));
+  if(budgetList === null) budgetList = [];
+  localStorage.setItem("budgets", JSON.stringify(budget));
+  budgetList.push(budget);
+  localStorage.setItem("budgets", JSON.stringify(budgetList));
 }
 
-// let newBudget = localStorage.getItem("newBudget")
-// if(newBudget){
-//   JSON.parse(newBudget)
-//   createNewBudget(newBudget)
-// }
+window.addEventListener('scroll', ()=>{
+  if(scrollY > 100){
+    document.querySelector('.budget-container').classList.add('scroll');
+  }else{ 
+    document.querySelector('.budget-container').classList.remove('scroll')
+  }
+  console.log(typeof scrollY);
+});
